@@ -1,49 +1,26 @@
-greeting.sh
+temph=`date | cut -c12-13`
+dat=`date +"%A %d in %B of %Y (%r)"`
 
-#!/bin/bash
-
-$temph=`date | cut -c 12-13` #date command with pipe line opeartor to cut cols with option -c col from 12 to 13
-
-$dat=`date +"%A %d in %B of %Y(%r)` # formating date
-
-if [ $temph -lt 12 ] #compare time less than 12 i.e morning -lt is less than
-
+if [ $temph -lt 12 ]
 then
-
-mess = "Good morning $LOGNAME, Have a nice day" # create message LOGNAME is environment variable
-
-fi #end if
-
-if [ $temph -gt 12 -a $temph -le 16]  #compare time greater than 12 i.e afternoon -gt is greater than
-
-then
-
-mess = "Good afternoon `$LOGNAME`"
-
+    msg="Good Morning $LOGNAME, Have nice day!"
 fi
 
-if [ $temph -gt 16 -a $temph -le 18] # -le lessthan or equal
-
+if [ $temph -ge 12 -a $temph -le 16 ]
 then
-
-mess = "Good Evening $LOGNAME"
-
+    msg="Good Afternoon $LOGNAME"
 fi
 
-if [ $temph -gt 18 -a $temph -le 24]
-
-thenm
-
-mess = "Hello $LOGNAME"
-
+if [ $temph -gt 16 -a $temph -le 20 ]
+then
+    msg="Good Evening $LOGNAME"
 fi
 
-echo -e "$mess \n This is $dat"
+if [ $temph -gt 20 -a $temph -le 24 ]
+then
+    msg="Good Night $LOGNAME"
+fi
 
-class example named as example.sh
-
-#!/bin/bash
-echo "Hello $LOGNAME" #logged username
-echo "current date is `date`" # current date
-echo "user is `who i am`"
-echo "current directory `pwd`" #current working direcory
+#echo $temph
+#echo $dat
+echo -e "$msg\nThis is $dat" > greetingmsg.txt
